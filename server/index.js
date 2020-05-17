@@ -3,8 +3,9 @@ const app = express()
 
 app.use(require('cors')())  // 跨域专用
 app.use(express.json())
-require('./plugins/db')(app)
 
+app.use('/uploads',express.static(__dirname+'/upload'))
+require('./plugins/db')(app)
 require('./routes/admin')(app)
 
 app.listen(3000, () => {
