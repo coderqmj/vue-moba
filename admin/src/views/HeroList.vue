@@ -1,19 +1,19 @@
 <template>
   <div class="CategoryList">
-    <h1>这是物品列表</h1>
+    <h1>这是英雄列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
-      <el-table-column prop="name" label="物品名称"></el-table-column>
-      <el-table-column prop="icon" label="图标">
+      <el-table-column prop="name" label="英雄名称"></el-table-column>
+      <el-table-column prop="avatar" label="头像">
         <template slot-scope="scope">
-          <img :src="scope.row.icon" style="height:3rem">
+          <img :src="scope.row.avatar" style="height:3rem">
         </template>
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="180">
         <template slot-scope="scope">
           <el-button
             type="primary"
-            @click="$router.push(`/items/edit/${scope.row._id}`)"
+            @click="$router.push(`/heroes/edit/${scope.row._id}`)"
             size="small"
           >编辑</el-button>
           <el-button type="primary" @click="remove(scope.row)" size="small">删除</el-button>
@@ -36,10 +36,10 @@ export default {
   methods: {
     // 获取操作
     async fetch() {
-      const res = await this.$http.get("rest/items");
+      const res = await this.$http.get("rest/heroes");
       // console.log(res);
       this.items = res.data;
-      // console.log(this.items)
+      // console.log(this.heroes)
     },
     // 删除操作
     async remove(row) {
@@ -49,7 +49,7 @@ export default {
         type: "warning"
       }).then(async () => {
         // 删除操作无需赋值
-        await this.$http.delete(`rest/items/${row._id}`)
+        await this.$http.delete(`rest/heroes/${row._id}`)
         this.$message({
           type: "success",
           message: "删除成功!"
