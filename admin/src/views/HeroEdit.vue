@@ -109,6 +109,7 @@
               <el-form-item label="小提示">
                 <el-input type="textarea" v-model="item.tip"></el-input>
               </el-form-item>
+              <!-- 删除技能 -->
               <el-form-item>
                 <el-button @click="model.skills.splice(i,1)" size="mini" type="danger">删除技能</el-button>
               </el-form-item>
@@ -194,35 +195,5 @@ export default {
 </script>
 
 <style>
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 5rem;
-  height: 5rem;
-  line-height: 5rem;
-  text-align: center;
-}
-.avatar-uploader-avatar {
-  font-size: 28px;
-  color: #8c939d;
-  width: 5rem;
-  height: 5rem;
-  line-height: 5rem;
-  text-align: center;
-}
-.avatar {
-  width: 5rem;
-  height: 5rem;
-  display: block;
-}
+
 </style>
