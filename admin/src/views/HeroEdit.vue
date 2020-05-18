@@ -3,60 +3,121 @@
     <h1>{{id ? '编辑': '新建'}}英雄</h1>
     <!-- native表示原生表单， prevent表示阻止默认提交，不要跳转页面 -->
     <el-form label-width="120px" @submit.native.prevent="save">
-      <!-- 名称区域 -->
-      <el-form-item label="名称">
-        <el-input v-model="model.name"></el-input>
-      </el-form-item>
-      <!-- 称号区域 -->
-      <el-form-item label="称号">
-        <el-input v-model="model.title"></el-input>
-      </el-form-item>
-      <!-- 头像区域 -->
-      <el-form-item label="头像">
-        <el-upload
-          class="avatar-uploader"
-          :action="$http.defaults.baseURL+'/upload'"
-          :show-file-list="false"
-          :on-success="afterUpload"
-        >
-          <img v-if="model.avatar" :src="model.avatar" class="avatar" />
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        </el-upload>
-      </el-form-item>
-      <!-- 类型区域 -->
-      <el-form-item label="类型">
-        <el-select v-model="model.categories" multiple>
-          <el-option
-            v-for="item of categories"
-            :label="item.name"
-            :value="item._id"
-            :key="item._id"
-          ></el-option>
-        </el-select>
-      </el-form-item>
-      <!-- 分数区域 -->
-      <el-form-item label="难度">
-        <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.difficult"></el-rate>
-      </el-form-item>
-      <!-- 技能 -->
-      <el-form-item label="技能">
-        <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.skills"></el-rate>
-      </el-form-item>
-      <!-- 攻击 -->
-      <el-form-item label="攻击">
-        <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.attack"></el-rate>
-      </el-form-item>
-      <!-- 生存 -->
-      <el-form-item label="生存">
-        <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.survive"></el-rate>
-      </el-form-item>
-      <!-- 顺风出装 -->
-      <el-form-item label="顺风出装">
-        <el-select v-model="model.items1" multiple>
-          <el-option v-for="item of items" :label="item.name" :value="item._id" :key="item._id"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item>
+      <el-tabs type="border-card" value="skills">
+        <!-- 基础信息 -->
+        <el-tab-pane label="基础信息">
+          <!-- 名称区域 -->
+          <el-form-item label="名称">
+            <el-input v-model="model.name"></el-input>
+          </el-form-item>
+          <!-- 称号区域 -->
+          <el-form-item label="称号">
+            <el-input v-model="model.title"></el-input>
+          </el-form-item>
+          <!-- 上传头像区域 -->
+          <el-form-item label="头像">
+            <el-upload
+              class="avatar-uploader"
+              :action="$http.defaults.baseURL+'/upload'"
+              :show-file-list="false"
+              :on-success="afterUpload"
+            >
+              <img v-if="model.avatar" :src="model.avatar" class="avatar" />
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
+          <!-- 类型区域 -->
+          <el-form-item label="类型">
+            <el-select v-model="model.categories" multiple>
+              <el-option
+                v-for="item of categories"
+                :label="item.name"
+                :value="item._id"
+                :key="item._id"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+          <!-- 分数区域 -->
+          <el-form-item label="难度">
+            <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.difficult"></el-rate>
+          </el-form-item>
+          <!-- 技能 -->
+          <el-form-item label="技能">
+            <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.skills"></el-rate>
+          </el-form-item>
+          <!-- 攻击 -->
+          <el-form-item label="攻击">
+            <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.attack"></el-rate>
+          </el-form-item>
+          <!-- 生存 -->
+          <el-form-item label="生存">
+            <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.survive"></el-rate>
+          </el-form-item>
+          <!-- 顺风出装 -->
+          <el-form-item label="顺风出装">
+            <el-select v-model="model.items1" multiple>
+              <el-option v-for="item of items" :label="item.name" :value="item._id" :key="item._id"></el-option>
+            </el-select>
+          </el-form-item>
+          <!-- 逆风出装 -->
+          <el-form-item label="逆风出装">
+            <el-select v-model="model.items2" multiple>
+              <el-option v-for="item of items" :label="item.name" :value="item._id" :key="item._id"></el-option>
+            </el-select>
+          </el-form-item>
+          <!-- 使用技巧 -->
+          <el-form-item label="使用技巧">
+            <el-input type="textarea" v-model="model.usageTips"></el-input>
+          </el-form-item>
+          <!-- 对抗技巧 -->
+          <el-form-item label="对抗技巧">
+            <el-input type="textarea" v-model="model.battleTips"></el-input>
+          </el-form-item>
+          <!-- 团战思路 -->
+          <el-form-item label="团战思路">
+            <el-input type="textarea" v-model="model.teamTips"></el-input>
+          </el-form-item>
+        </el-tab-pane>
+        <!-- 技能信息 -->
+        <el-tab-pane label="技能" name="skills">
+          <el-button @click="model.skills.push({})" type="primary" size="mini">
+            <i class="el-icon-plus"></i>添加技能
+          </el-button>
+          <el-row type="flex" style="flex-wrap: wrap">
+            <el-col :md="12" v-for="(item, i) in model.skills" :key="i">
+              <!-- 技能名称 -->
+              <el-form-item label="名称">
+                <el-input v-model="item.name"></el-input>
+              </el-form-item>
+              <!-- 技能图标 -->
+              <el-form-item label="图标">
+                <el-upload
+                  class="avatar-uploader"
+                  :action="$http.defaults.baseURL+'/upload'"
+                  :show-file-list="false"
+                  :on-success="res => $set(item,'icon', res.url)"
+                >
+                  <img v-if="item.icon" :src="item.icon" class="avatar" />
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
+              <!-- 技能描述 -->
+              <el-form-item label="描述">
+                <el-input type="textarea" v-model="item.description"></el-input>
+              </el-form-item>
+              <!-- 小提示 -->
+              <el-form-item label="小提示">
+                <el-input type="textarea" v-model="item.tip"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button @click="model.skills.splice(i,1)" size="mini" type="danger">删除技能</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+      </el-tabs>
+      <!-- 保存按钮 -->
+      <el-form-item style="margin-top:1rem;">
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>
     </el-form>
@@ -143,17 +204,25 @@ export default {
 .avatar-uploader .el-upload:hover {
   border-color: #409eff;
 }
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 5rem;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+}
 .avatar-uploader-avatar {
   font-size: 28px;
   color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
+  width: 5rem;
+  height: 5rem;
+  line-height: 5rem;
   text-align: center;
 }
 .avatar {
-  width: 178px;
-  height: 178px;
+  width: 5rem;
+  height: 5rem;
   display: block;
 }
 </style>
