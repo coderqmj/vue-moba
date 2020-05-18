@@ -39,8 +39,8 @@ router.post('/categories', async (req, res) => {
         next()
       }, router)
     }
-    ~~~
-    
+  ~~~
+  
 
 ### 1.2 上传文件
 
@@ -48,3 +48,19 @@ router.post('/categories', async (req, res) => {
 
 在后台使用 `multer` 处理 :`npm i multer`
 
+## 二.密码
+
+### 2.1密码散列加密
+
+安装依赖：`npm i bcryptjs`
+
+~~~javascript
+password: {
+    type: String,
+    set(val) {
+      return require('bcryptjs').hashSync(val, 10)
+    }
+  }
+~~~
+
+会生成加密的密码，数据库管理员也无法知道用户密码，即使是同一个字符串也会生成不同的加密哈希字符
