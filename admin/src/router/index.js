@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 组件的引入
+import Login from '../views/Login.vue'
+
 import Main from '../views/Main.vue'
 import CategoryEdit from '../views/CategoryEdit.vue'
 import CategoryList from '../views/CategoryList.vue'
@@ -23,7 +25,12 @@ import AdminUserList from '../views/AdminUserList.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
   {
     path: '/',
     name: 'Main',
@@ -44,7 +51,7 @@ Vue.use(VueRouter)
       { path: '/articles/create', component: ArticleEdit },
       { path: '/articles/edit/:id', component: ArticleEdit, props: true },
       { path: '/articles/list', component: ArticleList },
-      
+
       { path: '/ads/create', component: AdEdit },
       { path: '/ads/edit/:id', component: AdEdit, props: true },
       { path: '/ads/list', component: AdList },
@@ -54,7 +61,7 @@ Vue.use(VueRouter)
       { path: '/admin_users/list', component: AdminUserList },
     ]
   }
-  
+
 ]
 
 const router = new VueRouter({
