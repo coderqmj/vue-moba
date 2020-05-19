@@ -39,7 +39,7 @@ export default {
       const res = await this.$http.get("rest/items");
       // console.log(res);
       this.items = res.data;
-      console.log(this.items)
+      // console.log(this.items)
     },
     // 删除操作
     async remove(row) {

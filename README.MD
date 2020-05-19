@@ -64,3 +64,35 @@ password: {
 ~~~
 
 会生成加密的密码，数据库管理员也无法知道用户密码，即使是同一个字符串也会生成不同的加密哈希字符
+
+### 2.2 校验密码
+
+使用`bcryptjs`自带的方法
+
+~~~javascript
+ app.post('/admin/api/login', async (req, res) => {
+    // req.body表示客户端传过来的所有数据
+    const { username, password } = req.body
+    // 1.根据用户名找用户,无法通过密码，数据库里面没有密码
+    const AdminUser = require('../../models/AdminUser')
+    const user = await AdminUser.findOne({ username }).select('+password')
+    // 2.校验密码
+    if (!user) {
+      console.log('bbbbbbbbbb')
+      return res.status(422).send({
+        message: '用户不存在'
+      })
+    }
+    console.log(password)
+
+    const isValid = require('bcryptjs').compareSync(password, user.password)
+    if (!isValid) {
+      return res.status(422).send({
+        message: '密码错误'
+      })
+    }
+    // 3.返回token
+  })
+~~~
+
+### 2.3返回token

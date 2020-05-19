@@ -68,7 +68,7 @@ module.exports = app => {
     const user = await AdminUser.findOne({ username }).select('+password')
     // 2.校验密码
     assert(user, 422, '用户不存在')
-    console.log(password)
+    // console.log(password)
 
     const isValid = require('bcryptjs').compareSync(password, user.password)
     assert(isValid, 422, '密码错误')

@@ -38,9 +38,7 @@ export default {
     // 获取操作
     async fetch() {
       const res = await this.$http.get("rest/heroes");
-      // console.log(res);
       this.items = res.data;
-      // console.log(this.heroes)
     },
     // 删除操作
     async remove(row) {

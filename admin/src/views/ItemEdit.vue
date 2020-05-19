@@ -9,8 +9,9 @@
       <el-form-item label="图标">
         <el-upload
           class="avatar-uploader"
-          :action="$http.defaults.baseURL+'/upload'"
+          :action="uploadUrl"
           :show-file-list="false"
+          :headers="getAuthHeaders()"
           :on-success="afterUpload"
         >
           <img v-if="model.icon" :src="model.icon" class="avatar" />
@@ -34,8 +35,14 @@ export default {
       model: {}
     };
   },
+  computed: {
+    uploadUrl() {
+      return this.$http.defaults.baseURL+'/upload'
+    }
+  },
   created() {
     this.id && this.fetch();
+    // console.log(this.getAuthHeaders())
   },
   methods: {
     async save() {
