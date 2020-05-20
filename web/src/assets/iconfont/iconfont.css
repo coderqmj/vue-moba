@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1589964279489'); /* IE9 */
+  src: url('iconfont.eot?t=1589964279489#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAQ4AAsAAAAACJQAAAPqAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDFAqEWIQEATYCJAMQCwoABCAFhG0HRhtsB8iegW0bm4x06ZIuKZXik8VD/2uvd/bNQggdsvo+6BOFKgqoaEnIVukKU6Pb49mIDOVZEy6gWeMFIe1BxVTI5uCcxVeSnoAECIiqvr+Lw3FLfL7Vdhlr2t4cdQHGAQW2xgKMCyQwb5hewkB+nk2g36w02HF1YydwlpxGgXjSaxXAuaSVPamhE5qWngniK6B01ST8KgC+xN+P/yAnZ6BSF+C0PL2pUoPSX+rnJMH/5/UK9WDMemawfhRsA5K4brVeIVL/NkK/MRlpF9BIofqFnpP//7MmJ9ZyTt75/3hFRTTAkQ5CTC9Q+KX2SQS/EInCb1Krgqis32EA34BoAWbSVAuYOeYSm+Xl6+5OOq2GjprvelaA/LwpC7A1jppQ0zk3Z7WUm4wkSbblTNQeR1RCLwidvJi97FQyy30T8aHcTXwsl/q5ukoS5pDvcTQELUhcsCRw8+nI3VKkwyEXRWapkLX1ZNLcRQHrAgIuidkiwwsytxC3ctfOIrfWYldGLhuqXnv28HaMGrXjyJR4tG4bv1UhPZM5nsvFp4zwZIgn7kTsYrL0TOcBBsPfYiHXiZ5If+xkvJwGekxwwisqo+mJS3bnuU90RxPPhJUq1WXh+Z4no/360rh+2jQ9DlghK4hM9O8bfdIzv72VUh1WGlENGofbvFNacNxjRazsNKDp1WQMW47NSfUCJ0sVK9vrK/fupcZQk5gRn0uD+tFYi9HYEogwyoIiuuwtJSzMpK7X791b2V6/MrYKNI3MSX3/e/6vldBjqc34huvatHZm8vQP9M66HtTL++DkkJyQyQdzel0PbhycMxj8/4OEkLzpqiHEwjzDY83tK6SnJwlFVygbCnHSlHoe8iv9+UA/AC+KneABoLzHv/8Bv/E5v7N9vQq/OruRAH6+9vwe218kGC/vbowteN+8kTlpChxdphb6XCs5fUBx88T9ro73nA7j7q0hnxqdTOhM5VBpzUDRWUYkZhtqA3rQ6OxBvy01/QdMYBEiXQCbxgEIo3ZAZdh3KEZdQyTmLtSmvYXGaAT0Owu/EQespnetYJGCQ2qoHAz1KqtF4xk41yS1HWn7mxRsURBjZYjt0rtgdkZWNVSDLIhdo03XAG0Ox2mghrWaYTWYD5lMVmhjrQak4jJ0HGfLz8zUtF0pQ2U1A1dHWIgCB1GDlAaD9FSsLDRhYY5r7fPtEK3+TBTYnqwGswzC6qIvHcqWIWsEokZqGZX1LPt0GUArB4ejAWmwrMygamBGTK7fCrK1VzNAVDgZdDO8NvkyUT7NWGnG/nLzFS6Cfs4GGThGYCRGgbxDrNXTggbaTIrBiO0bxZJNyNIfAAAA') format('woff2'),
+  url('iconfont.woff?t=1589964279489') format('woff'),
+  url('iconfont.ttf?t=1589964279489') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1589964279489#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-hero:before {
+  content: "\e664";
+}
+
+.icon-newplayer_play:before {
+  content: "\e704";
+}
+
+.icon-Menu:before {
+  content: "\e665";
+}
+
