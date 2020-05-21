@@ -138,23 +138,24 @@ p {
 // nav
 .nav {
   display: flex;
+  // justify-content: space-around;
   .nav-item {
     border-bottom: 3px solid transparent;
     padding-bottom: 0.2rem;
     &.active {
-      // color: map-get($colors, 'primary');
-      // border-bottom-color: map-get($colors, 'primary');
-      border-bottom: 3px solid #fff
+      color: map-get($colors, 'primary');
+      border-bottom-color: map-get($colors, 'primary');
+      // border-bottom: 3px solid orange
     }
   }
-  // &.nav-inverse {
-  //   .nav-item {
-  //     color: map-get($colors, 'white');
-  //     &.active {
-  //       border-bottom-color: map-get($colors, 'white');
-  //     }
-  //   }
-  // }
+  &.nav-inverse {
+    .nav-item {
+      color: map-get($colors, 'white');
+      &.active {
+        border-bottom-color: map-get($colors, 'white');
+      }
+    }
+  }
   
 }
 

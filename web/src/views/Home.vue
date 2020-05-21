@@ -27,20 +27,203 @@
     </div>
     <!-- end of nav-icons -->
 
-    <i class="iconfont icon-Menu fs-xxl text-primary"></i>
+    <!-- this is news card -->
+
+    <list-card icon="news" title="新闻资讯" :categories="newsCats">
+      <template #items="{category}">
+        <div class="py-2" v-for="(news,newsIndex) in category.newsList" :key="newsIndex">
+            <span>[{{news.categoryName}}]</span>
+            <span>|</span>
+            <span>{{news.title}}</span>
+            <span>{{news.date}}</span>
+          </div>
+      </template>
+    </list-card>
+
+
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
+    <p>aaaaaa</p>
   </div>
 </template>
 
 <script>
+// import MCard from "../components/Card";
+import ListCard from "../components/ListCard";
 export default {
   data() {
     return {
+      // swiper setting
       swiperOptions: {
         pagination: {
           el: ".pagination-home"
         }
-      }
+      },
+      // news data
+      newsCats: [
+        {
+          name: "热门",
+          newsList: [
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+          ]
+        },
+        {
+          name: "新闻",
+          newsList: [
+            {
+              categoryName: "新闻",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "新闻",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "新闻",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "新闻",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+          ]
+        },
+        {
+          name: "公告",
+          newsList: [
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+          ]
+        },
+        {
+          name: "活动",
+          newsList: [
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+          ]
+        },
+        {
+          name: "赛事",
+          newsList: [
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+            {
+              categoryName: "公告",
+              title: "5.20全服不停机公告",
+              date: "5/19"
+            },
+          ]
+        },
+      ]
     };
+  },
+  components: {
+    // MCard,
+    ListCard
   }
 };
 </script>

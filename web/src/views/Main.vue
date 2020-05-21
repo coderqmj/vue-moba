@@ -11,8 +11,8 @@
       <i class="sprite sprite-download"></i>
     </div>
 
-    <div class="bg-primary pt-3 pb-2">
-      <div class="nav d-flex text-white jc-around pb-1">
+    <div class="bg-primary pt-3 pb-2 ">
+      <div class="nav nav-inverse jc-around pb-1">
         <div class="nav-item active">
           <router-link tag="div" class="nav-link" to="/">首页</router-link>
         </div>

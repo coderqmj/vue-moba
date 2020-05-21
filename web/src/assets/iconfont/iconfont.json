@@ -6,11 +6,32 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "14294",
+      "name": "五角心",
+      "font_class": "wujiaoxin",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "113741",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e71f",
+      "unicode_decimal": 59167
+    },
+    {
       "icon_id": "1375630",
       "name": "hero",
       "font_class": "hero",
       "unicode": "e664",
       "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "3965192",
+      "name": "news",
+      "font_class": "news",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
     },
     {
       "icon_id": "5427608",
