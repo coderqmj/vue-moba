@@ -179,6 +179,11 @@ p {
     height: 1.8462rem;
     background-position: 18.73% 71.694%;
   }
+  &.sprite-more{
+    width: 1.3846rem;
+    height: 0.2308rem;
+    background-position: 47.619% 56.305%;
+  }
 }
 // borders
 @each $dir in (top, right, bottom, left) {
