@@ -11,7 +11,7 @@
       <i class="sprite sprite-download"></i>
     </div>
 
-    <div class="bg-primary pt-3 pb-2 ">
+    <div class="bg-primary pt-3 pb-2">
       <div class="nav nav-inverse jc-around pb-1">
         <div class="nav-item active">
           <router-link tag="div" class="nav-link" to="/">首页</router-link>
@@ -32,5 +32,10 @@
 export default {};
 </script>
 
-<style>
+<style lang="scss">
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
 </style>

@@ -28,19 +28,34 @@
     <!-- end of nav-icons -->
 
     <!-- this is news card -->
-
     <list-card icon="news" title="新闻资讯" :categories="newsCats">
       <template #items="{category}">
-        <div class="py-2" v-for="(news,newsIndex) in category.newsList" :key="newsIndex">
-            <span>[{{news.categoryName}}]</span>
-            <span>|</span>
-            <span>{{news.title}}</span>
-            <span>{{news.date}}</span>
-          </div>
+        <router-link
+          tag="div"
+          :to="`/articles/${news._id}`"
+          class="py-2 fs-lg d-flex"
+          v-for="(news,newsIndex) in category.newsList"
+          :key="newsIndex"
+        >
+          <span class="text-info">[{{news.categoryName}}]</span>
+          <span class="px-2">|</span>
+          <span class="flex-1 text-dark text-ellipsis pr-2">{{news.title}}</span>
+          <span class="text-gery-1 fs-sm">{{news.createdAt | date}}</span>
+        </router-link>
       </template>
     </list-card>
 
-
+    <!-- this is hero card -->
+    <list-card icon="hero" title="英雄列表" :categories="heroCats">
+      <template #items="{category}">
+        <div class="d-flex flex-wrap" style="margin: 0 -0.5rem">
+          <div class="p-2 text-center" style="width: 20%;" v-for="(hero,heroIndex) in category.heroList" :key="heroIndex">
+            <img :src="hero.avatar" class="w-100" />
+            <div>{{hero.name}}</div>
+          </div>
+        </div>
+      </template>
+    </list-card>
     <p>aaaaaa</p>
     <p>aaaaaa</p>
     <p>aaaaaa</p>
@@ -57,6 +72,7 @@
 <script>
 // import MCard from "../components/Card";
 import ListCard from "../components/ListCard";
+import dayjs from "dayjs";
 export default {
   data() {
     return {
@@ -67,163 +83,36 @@ export default {
         }
       },
       // news data
-      newsCats: [
-        {
-          name: "热门",
-          newsList: [
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-          ]
-        },
-        {
-          name: "新闻",
-          newsList: [
-            {
-              categoryName: "新闻",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "新闻",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "新闻",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "新闻",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-          ]
-        },
-        {
-          name: "公告",
-          newsList: [
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-          ]
-        },
-        {
-          name: "活动",
-          newsList: [
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-          ]
-        },
-        {
-          name: "赛事",
-          newsList: [
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-            {
-              categoryName: "公告",
-              title: "5.20全服不停机公告",
-              date: "5/19"
-            },
-          ]
-        },
-      ]
+      newsCats: [],
+      heroCats: []
     };
   },
   components: {
     // MCard,
     ListCard
+  },
+
+  methods: {
+    // fetch categories of news
+    async fetchNewsCats() {
+      const res = await this.$http.get("news/list");
+      console.log(res);
+      this.newsCats = res.data;
+    },
+    // fetch categories of heroes
+    async fetchHeroCats() {
+      const res = await this.$http.get("heroes/list");
+      this.heroCats = res.data;
+    }
+  },
+  created() {
+    this.fetchNewsCats();
+    this.fetchHeroCats();
+  },
+  filters: {
+    date(val) {
+      return dayjs(val).format("MM/DD");
+    }
   }
 };
 </script>

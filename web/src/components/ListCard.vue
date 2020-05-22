@@ -1,12 +1,12 @@
 <template>
   <m-card :icon="icon" :title="title">
     <div class="nav jc-between">
-      <div class="nav-item" :class="{active: active===index}" v-for="(category,index) in categories" :key="index" @click="active = index">
+      <div class="nav-item" :class="{active: active===index}" v-for="(category,index) in categories" :key="index" @click="$refs.list.$swiper.slideTo(index)">
         <div  class="nav-link">{{category.name}}</div>
       </div>
     </div>
     <div class="pt-3">
-      <swiper>
+      <swiper ref="list" :options="{autoHeight: true}" @slide-change="()=> active = $refs.list.$swiper.realIndex">
         <swiper-slide v-for="(category, index) in categories" :key="index">
           <!-- it needs a slot with name here -->
           <slot name="items" :category="category"></slot>
