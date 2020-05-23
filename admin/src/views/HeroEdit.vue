@@ -3,9 +3,9 @@
     <h1>{{id ? '编辑': '新建'}}英雄</h1>
     <!-- native表示原生表单， prevent表示阻止默认提交，不要跳转页面 -->
     <el-form label-width="120px" @submit.native.prevent="save">
-      <el-tabs type="border-card" value="skills">
+      <el-tabs type="border-card" value="basic">
         <!-- 基础信息 -->
-        <el-tab-pane label="基础信息">
+        <el-tab-pane label="基础信息" name="basic">
           <!-- 名称区域 -->
           <el-form-item label="名称">
             <el-input v-model="model.name"></el-input>
@@ -19,10 +19,24 @@
             <el-upload
               class="avatar-uploader"
               :action="$http.defaults.baseURL+'/upload'"
+              :headers="getAuthHeaders()"
               :show-file-list="false"
-              :on-success="afterUpload"
+              :on-success="res => $set(item,'avatar', res.url)"
             >
-              <img v-if="model.avatar" :src="model.avatar" class="avatar" />
+              <img v-if="model.avatar" :src="model.avatar" class="avatar" style="width:3rem" />
+              <i v-else class="el-icon-plus avatar-uploader-icon " style="width:3rem"></i>
+            </el-upload>
+          </el-form-item>
+          <!-- 上传背景图 -->
+          <el-form-item label="背景图">
+            <el-upload
+              class="avatar-uploader"
+              :action="$http.defaults.baseURL+'/upload'"
+              :headers="getAuthHeaders()"
+              :show-file-list="false"
+              :on-success="res =>$set(model,'banner',res.url)"
+            >
+              <img v-if="model.banner" :src="model.banner" class="avatar" />
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
           </el-form-item>
@@ -93,12 +107,13 @@
               <el-form-item label="图标">
                 <el-upload
                   class="avatar-uploader"
+                  :headers="getAuthHeaders()"
                   :action="$http.defaults.baseURL+'/upload'"
                   :show-file-list="false"
                   :on-success="res => $set(item,'icon', res.url)"
                 >
-                  <img v-if="item.icon" :src="item.icon" class="avatar" />
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  <img v-if="item.icon" :src="item.icon" class="avatar"  style="width: 3rem"/>
+                  <i v-else class="el-icon-plus avatar-uploader-icon" style="width: 3rem"></i>
                 </el-upload>
               </el-form-item>
               <!-- 技能描述 -->
@@ -185,15 +200,14 @@ export default {
       // console.log(this.item);
     },
     // 5.上传头像后显示头像
-    afterUpload(res) {
-      // console.log(res);
-      // this.$set(this.model,'avatar',res.url)
-      this.model.avatar = res.url;
-    }
+    // afterUpload(res) {
+    //   // console.log(res);
+    //   // this.$set(this.model,'avatar',res.url)
+    //   this.model.avatar = res.url;
+    // }
   }
 };
 </script>
 
 <style>
-
 </style>
