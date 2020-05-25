@@ -57,7 +57,8 @@ module.exports = app => {
   app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
     // 本来本身在express是没用file这个东西，是因为用了upload中间件
     const file = req.file
-    file.url = `http://localhost:3000/uploads/${file.filename}`
+    // file.url = `http://localhost:3000/uploads/${file.filename}`
+    file.url = `http://moba.qiumojian.top/uploads/${file.filename}`
     res.send(file)
   })
 
