@@ -110,5 +110,25 @@ password: {
 // 第一个参数为对象名，第二个为属性名，第三个为赋值
 ~~~
 
+### 3.2上线之后无法加载图片
+
+原因：有些图片不是线上地址，上传地址是localhost：3000，网页上访问，电脑上是没有开启3000端口的
+
+解决办法：使用 robo 软件将数据库的localhost：3000替换成自己的域名
+
+```javascript
+db.getCollection("items").find({}).map(doc=>{
+    
+    doc.icon = doc.icon ? doc.icon.replace('localhost:3000', 'moba.qiumojian.top') : null
+    
+    db.items,save(doc)
+    
+    return doc
+    
+})
+```
+
+
+
 ## 四.用到的插件及工具
 

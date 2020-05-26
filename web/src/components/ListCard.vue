@@ -1,12 +1,22 @@
 <template>
   <m-card :icon="icon" :title="title">
     <div class="nav jc-between">
-      <div class="nav-item" :class="{active: active===index}" v-for="(category,index) in categories" :key="index" @click="$refs.list.$swiper.slideTo(index)">
-        <div  class="nav-link">{{category.name}}</div>
+      <div
+        class="nav-item"
+        :class="{active: active===index}"
+        v-for="(category,index) in categories"
+        :key="index"
+        @click="$refs.list.$swiper.slideTo(index)"
+      >
+        <div class="nav-link">{{category.name}}</div>
       </div>
     </div>
     <div class="pt-3">
-      <swiper ref="list" :options="{autoHeight: true}" @slide-change="()=> active = $refs.list.$swiper.realIndex">
+      <swiper
+        ref="list"
+        :options="swiperOptions"
+        @slide-change="()=> active = $refs.list.$swiper.realIndex"
+      >
         <swiper-slide v-for="(category, index) in categories" :key="index">
           <!-- it needs a slot with name here -->
           <slot name="items" :category="category"></slot>
@@ -15,7 +25,7 @@
             <span>|</span>
             <span>{{news.title}}</span>
             <span>{{news.date}}</span>
-          </div> -->
+          </div>-->
         </swiper-slide>
       </swiper>
     </div>
@@ -35,8 +45,13 @@ export default {
   },
   data() {
     return {
-      active: 0
-    }
+      active: 0,
+      swiperOptions: {
+        autoHeight: true,
+        autoplay: true,
+        speed: 400
+      }
+    };
   },
   methods: {
     // changeCategory(index) {

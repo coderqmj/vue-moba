@@ -15,9 +15,9 @@
     <!-- end of swiper -->
     <div class="nav-icons bg-white mt-3 text-center pt-3 text-dark-1">
       <div class="d-flex flex-wrap">
-        <div class="nav-item mb-3" v-for="n in 13" :key="n">
-          <i class="sprite sprite-news"></i>
-          <div class="py-2">爆料站</div>
+        <div class="nav-item mb-3" v-for="item in card" :key="item">
+          <i class="sprite sprite-story"></i>
+          <div class="py-2">{{item.title}}</div>
         </div>
       </div>
       <div class="bg-light py-2 fs-sm">
@@ -49,23 +49,20 @@
     <list-card icon="hero" title="英雄列表" :categories="heroCats">
       <template #items="{category}">
         <div class="d-flex flex-wrap" style="margin: 0 -0.5rem">
-          <router-link tag="div" :to="`/heroes/${hero._id}`" class="p-2 text-center" style="width: 20%;" v-for="(hero,heroIndex) in category.heroList" :key="heroIndex">
+          <router-link
+            tag="div"
+            :to="`/heroes/${hero._id}`"
+            class="p-2 text-center"
+            style="width: 20%;"
+            v-for="(hero,heroIndex) in category.heroList"
+            :key="heroIndex"
+          >
             <img :src="hero.avatar" class="w-100" />
             <div>{{hero.name}}</div>
           </router-link>
         </div>
       </template>
     </list-card>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
-    <p>aaaaaa</p>
   </div>
 </template>
 
@@ -80,11 +77,22 @@ export default {
       swiperOptions: {
         pagination: {
           el: ".pagination-home"
-        }
+        },
+        autoplay: true
       },
       // news data
       newsCats: [],
-      heroCats: []
+      heroCats: [],
+      card: [
+        { icon: "story", title: "故事" },
+        { icon: "news", title: "爆料站" },
+        { icon: "yinfdi", title: "营地" },
+        { icon: "tiyanfu", title: "体验服" },
+        { icon: "xinren", title: "新人" },
+        { icon: "ziliaoku", title: "资料库" },
+        { icon: "zhoubian", title: "周边" },
+        { icon: "gongzhonghao", title: "公众号" }
+      ]
     };
   },
   components: {
