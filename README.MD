@@ -132,3 +132,9 @@ db.getCollection("items").find({}).map(doc=>{
 
 ## 四.用到的插件及工具
 
+### 4.1 pm2守护进程
+- npm i -g pm2 
+- pm2 list: 查看进程
+- pm2 start index.js : 在其目录下跑起程序
+- pm2 reload [name] index :修改完程序后重新跑起程序
+
